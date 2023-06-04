@@ -23,11 +23,6 @@ public class OpenCardSetActivity extends AppCompatActivity {
             TextView textView = findViewById(R.id.textView);
 
             textView.setText(cardSetTitle);
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            toolbar.setTitle(cardSetTitle);
-            toolbar.setNavigationOnClickListener(v -> {
-
-            });
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
