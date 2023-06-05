@@ -11,13 +11,13 @@ TODO: create presentation containing background, objectives, features, and limit
 
 DONE: create view list of card-sets using RecyclerView
 
-HOLD: create model class for card-set containing set title, list of items, and index for last viewed item
-
 DONE: create view showing question, previous button, next button, and show/hide button for answer
 
 DONE: make a new view open when a card-set is clicked by passing the card-set id to the new activity
 
-TODO: create model class for item containing question and answer
+TODO: create view for adding a card-set
+
+DONE: create methods for interacting with database
 
 TODO: import library for converting markdown file into java object
 
