@@ -3,10 +3,12 @@ package bsit.it363a.markcards;
 import java.util.List;
 
 public class CardSet {
+
+    int id;
     String title;
     int count;
 
-    public CardSet(String title) {
+    public CardSet(int id, String title) {
         this.title = title;
     }
 

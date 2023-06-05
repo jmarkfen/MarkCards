@@ -5,27 +5,34 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import bsit.it363a.markcards.db.DatabaseHelper;
+
 public class MainActivity extends AppCompatActivity implements CardSetRecyclerAdapter.OnCardSetListener {
 
     List<CardSet> cardSets = new ArrayList<>();
-
+    DatabaseHelper helper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        cardSets.add(new CardSet("title1"));
-        cardSets.add(new CardSet("title2"));
-        cardSets.add(new CardSet("title3"));
-        cardSets.add(new CardSet("title4"));
-        cardSets.add(new CardSet("title5"));
-        cardSets.add(new CardSet("title6"));
+        // add to db
+        helper.insertCardSet("Sample card set 1");
+        helper.insertCardSet("Sample card set 2");
+        helper.insertCardSet("Sample card set 3");
+        // get from db
+        Cursor data  = helper.getCardSets();
+        while (data.moveToNext()) {
+            int id = data.getInt(0);
+            String title = data.getString(DatabaseHelper.CARDSET_TITLE_INDEX);
+            cardSets.add(new CardSet(id, title));
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

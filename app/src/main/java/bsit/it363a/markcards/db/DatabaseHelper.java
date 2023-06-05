@@ -17,12 +17,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CARDSETS = "cardsets";
     public static final String CARDSET_ID = "cardset_id";
-    public static final String CARDSET_NAME = "cardset_name";
+    public static final int CARDSET_ID_INDEX = 0;
+    public static final String CARDSET_TITLE = "cardset_title";
+    public static final int CARDSET_TITLE_INDEX = 1;
     public static final String CARDSET_LAST_ITEM = "last_item";
+    public static final int CARDSET_LAST_ITEM_INDEX = 2;
     public static final Map<String, Integer> CARDSET_COLS = new HashMap<String, Integer>() {
         {
             put(CARDSET_ID, 0);
-            put(CARDSET_NAME, 1);
+            put(CARDSET_TITLE, 1);
             put(CARDSET_LAST_ITEM, 2);
         }
     };
@@ -50,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String sql;
         // create TABLE_CARDSETS
         fs = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT)";
-        sql = String.format(Locale.ENGLISH, fs, CARDSETS, CARDSET_ID, CARDSET_NAME, CARDSET_LAST_ITEM);
+        sql = String.format(Locale.ENGLISH, fs, CARDSETS, CARDSET_ID, CARDSET_TITLE, CARDSET_LAST_ITEM);
         db.execSQL(sql);
 
         // create TABLE_CARDS
@@ -76,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateCardSet(int id, String name, int last_item) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        if (name != null) contentValues.put(CARDSET_NAME, name);
+        if (name != null) contentValues.put(CARDSET_TITLE, name);
         if (last_item != 0) contentValues.put(CARDSET_LAST_ITEM, last_item);
         long result = -1;
         if (id != 0) result = db.update(CARDSETS, contentValues, CARDSET_ID + " = " + id, null);
@@ -84,10 +87,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public void insertCardSet(String name) {
+    public void insertCardSet(String title) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CARDSET_NAME, name);
+        contentValues.put(CARDSET_TITLE, title);
         // last_item can be null
         db.insert(CARDSETS, CARDSET_LAST_ITEM, contentValues);
     }
