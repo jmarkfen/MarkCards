@@ -1,6 +1,6 @@
 # MarkCards: Markdown-Based Flashcards App
 
-An Android App that can make flashcards from markdown files. This could be useful for studying and preparing for exams.
+An Android app that can make flashcards from markdown files. This could be useful for studying and preparing for exams.
 
 ----
 
