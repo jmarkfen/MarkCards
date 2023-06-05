@@ -34,8 +34,12 @@ public class MainActivity extends AppCompatActivity implements CardSetRecyclerAd
 
     @Override
     public void onCardSetClick(int position) {
-        Intent intent = new Intent(this, OpenCardSetActivity.class);
-        intent.putExtra("cardset_title", cardSets.get(position).getTitle());
+        Intent intent = new Intent(this, CardActivity.class);
+        String title = cardSets.get(position).getTitle();
+        intent.putExtra("cardset_title", title);
+        intent.putExtra("question", "My Question " + title);
+        intent.putExtra("answer", "My Answer " + title);
+
         startActivity(intent);
     }
 }
